@@ -1,4 +1,4 @@
-interface TradeHistory {
+interface HistoryTrade {
   date: string;
   type: string;
   position: string;
@@ -10,4 +10,4 @@ interface TradeHistory {
   point: number | null;
 }
 
-export default TradeHistory;
+export default HistoryTrade;

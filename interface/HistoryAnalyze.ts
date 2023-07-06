@@ -1,6 +1,6 @@
-interface AnalyzeHistory {
-  winrate: {[key: string]: number}; // 승률
-  tradecoin: {[key: string]: number};
+interface HistoryAnalyze {
+  winrate: { [key: string]: number }; // 승률
+  tradecoin: { [key: string]: number };
   startaccount: number;
   nowaccount: number;
   maxaccount: number;
@@ -14,7 +14,7 @@ interface AnalyzeHistory {
   min_profitlossrate: number; // 최대 손실
 }
 
-const InitAnalyzeHistory: AnalyzeHistory = {
+const InitHistoryAnalyze: HistoryAnalyze = {
   winrate: {},
   tradecoin: {},
   startaccount: 0,
@@ -30,5 +30,5 @@ const InitAnalyzeHistory: AnalyzeHistory = {
   min_profitlossrate: 0,
 };
 
-export {InitAnalyzeHistory};
-export default AnalyzeHistory;
+export { InitHistoryAnalyze };
+export default HistoryAnalyze;
