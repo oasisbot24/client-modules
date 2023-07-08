@@ -1,15 +1,15 @@
-import ParentIndicator_Data from '@interface/ParentIndicator_Data';
+import ParentIndicator_Data from "electron/modules/class/IndicatorSetting";
 
 const getParentIndicator_data = () => {
   const ret: ParentIndicator_Data = {
-    title: '보조지표 선택',
+    title: "보조지표 선택",
     setting: {
       coin_type: {
-        name: '기준코인',
-        value: '',
+        name: "기준코인",
+        value: "",
       },
       standard_minute: {
-        name: '기준분봉',
+        name: "기준분봉",
         value: 1,
       },
     },
