@@ -1,4 +1,4 @@
-import TradeInputInterface from "@interface/TradeInputInterface";
+import TradeInputInterface from "./TradeInputInterface";
 
 interface BacktestInputInterface extends TradeInputInterface {
   startDate: string;
