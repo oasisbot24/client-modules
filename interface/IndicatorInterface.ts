@@ -1,4 +1,4 @@
-interface ParentIndicator_Data {
+interface IndicatorInterface {
     title: string;
     setting: {
       [key: string]: {
@@ -22,4 +22,4 @@ interface ParentIndicator_Data {
     };
   }
   
-  export default ParentIndicator_Data;
+  export default IndicatorInterface;
