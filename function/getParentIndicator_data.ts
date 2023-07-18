@@ -1,7 +1,7 @@
-import ParentIndicator_Data from "electron/modules/class/IndicatorSetting";
+import IndicatorInterface from "@interface/IndicatorInterface";
 
-const getParentIndicator_data = () => {
-  const ret: ParentIndicator_Data = {
+const getDefaultIndicator = () => {
+  const ret: IndicatorInterface = {
     title: "보조지표 선택",
     setting: {
       coin_type: {
@@ -18,4 +18,4 @@ const getParentIndicator_data = () => {
   return ret;
 };
 
-export default getParentIndicator_data;
+export default getDefaultIndicator;

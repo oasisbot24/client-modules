@@ -1,8 +1,11 @@
 import AnalyzeHistory from "@interface/history/HistoryAnalyze";
-import BacktestInput from "@interface/BacktestInput";
-import TradeHistory from "@interface/HistoryTrade";
+import BacktestnputInterface from "@interface/input/BacktestnputInterface";
+import HistoryTrade from "@interface/history/HistoryTrade";
 
-function analyzeHistory(history: TradeHistory[], input?: BacktestInput) {
+function analyzeHistory(
+  history: HistoryTrade[],
+  input?: BacktestnputInterface
+) {
   let ret: AnalyzeHistory = {
     winrate: {
       수익: 1,
@@ -21,11 +24,11 @@ function analyzeHistory(history: TradeHistory[], input?: BacktestInput) {
     max_profitlossrate: 0,
     min_profitlossrate: 0,
   };
-  if (history.length === 0 || input?.startAccount === 0) return ret;
+  if (history.length === 0 || input?.startBalance === 0) return ret;
 
   let startDate: Date, endDate: Date;
   if (input !== undefined) {
-    ret.startaccount = input.startAccount;
+    ret.startaccount = input.startBalance;
     startDate = new Date(input.startDate);
     endDate = new Date(input.endDate);
   } else {
@@ -66,7 +69,7 @@ function analyzeHistory(history: TradeHistory[], input?: BacktestInput) {
     }
     if (history[i].position === "sell") {
       countTotalPL++;
-      if (history[i].profitloss > 0) countProfit++;
+      if (history[i].profitloss ?? 0 > 0) countProfit++;
       if (history[last_position].position === "buy") {
         countHolding++;
         const sellDate = new Date(history[i].date);
@@ -78,7 +81,7 @@ function analyzeHistory(history: TradeHistory[], input?: BacktestInput) {
     }
     if (history[i].type in ret.tradecoin) ret.tradecoin[history[i].type] += 1;
     else ret.tradecoin[history[i].type] = 1;
-    ret.profitloss += history[i].profitloss;
+    ret.profitloss += history[i].profitloss ?? 0;
     if (ret.startaccount > 0) {
       ret.nowaccount = ret.startaccount + ret.profitloss;
       ret.profitlossrate = ret.profitloss / ret.startaccount;
@@ -89,7 +92,7 @@ function analyzeHistory(history: TradeHistory[], input?: BacktestInput) {
         ret.min_profitlossrate = ret.profitlossrate;
     } else {
       if (history[i].profitlossrate != null)
-        ret.profitlossrate += history[i].profitlossrate;
+        ret.profitlossrate += history[i].profitlossrate ?? 0;
       if (ret.max_profitlossrate < ret.profitlossrate)
         ret.max_profitlossrate = ret.profitlossrate;
       if (ret.min_profitlossrate > ret.profitlossrate)
@@ -112,7 +115,7 @@ function analyzeHistory(history: TradeHistory[], input?: BacktestInput) {
   const mean_profitlossrate = ret.profitlossrate / duration;
   for (let i = history.length - 1; i >= 0; i--) {
     if (history[i].position === "sell") {
-      const diff = history[i].profitlossrate - mean_profitlossrate;
+      const diff = (history[i].profitlossrate ?? 0) - mean_profitlossrate;
       ret.volatility += diff * diff;
     }
   }
