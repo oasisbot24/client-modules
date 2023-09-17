@@ -78,6 +78,12 @@ const channel = {
     maximize: 'window_maximize',
     close: 'window_close',
   },
+  log: {
+    info: 'log_info',
+    error: 'log_error',
+    warn: 'log_warn',
+    debug: 'leg_debug',
+  },
   cache: 'cache',
 };
 
