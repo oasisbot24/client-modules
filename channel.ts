@@ -81,6 +81,7 @@ const channel = {
   log: {
     info: 'log_info',
     error: 'log_error',
+    warn: 'log_warn',
     debug: 'leg_debug',
   },
   cache: 'cache',
