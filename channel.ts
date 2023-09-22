@@ -22,6 +22,7 @@ const channel = {
     sell: 'oasisbot_sell',
     start: 'oasisbot_start',
     stop: 'oasisbot_stop',
+    wallet: 'oasisbot_wallet',
   },
   setting: {
     preset: {
