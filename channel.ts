@@ -22,6 +22,7 @@ const channel = {
     sell: 'oasisbot_sell',
     start: 'oasisbot_start',
     stop: 'oasisbot_stop',
+    wallet: 'oasisbot_wallet',
   },
   setting: {
     preset: {
@@ -77,6 +78,12 @@ const channel = {
     unmaximize: 'window_unmaximize',
     maximize: 'window_maximize',
     close: 'window_close',
+  },
+  log: {
+    info: 'log_info',
+    error: 'log_error',
+    warn: 'log_warn',
+    debug: 'leg_debug',
   },
   cache: 'cache',
 };
