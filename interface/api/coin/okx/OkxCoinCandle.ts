@@ -2,12 +2,12 @@ import CoinCandle from "@interface/api/coin/CoinCandle";
 import { dateToString } from "@function/string";
 
 type OkxCoinCandle = [
-  number, // timestamp
-  number, // open
-  number, // high
-  number, // low
-  number, // close
-  number // state
+  string, // timestamp
+  string, // open
+  string, // high
+  string, // low
+  string, // close
+  string // state
 ];
 
 function convertToCoinCandle(
@@ -17,14 +17,14 @@ function convertToCoinCandle(
 ) {
   const coinAccountData: CoinCandle = {
     market: coin,
-    candle_date_time_kst: dateToString(new Date(candle[0])),
-    opening_price: candle[1], //	시가	Double
-    high_price: candle[2], //	고가	Double
-    low_price: candle[3], //	저가	Double
-    trade_price: candle[4], //	종가	Double
-    timestamp: candle[0] * 1000, //	해당 캔들에서 마지막 틱이 저장된 시각	Long
-    candle_acc_trade_price: candle[5] * candle[4], //	누적 거래 금액	Double
-    candle_acc_trade_volume: candle[5], //	누적 거래량	Double
+    candle_date_time_kst: dateToString(new Date(parseInt(candle[0]))),
+    opening_price: parseFloat(candle[1]), //	시가	Double
+    high_price: parseFloat(candle[2]), //	고가	Double
+    low_price: parseFloat(candle[3]), //	저가	Double
+    trade_price: parseFloat(candle[4]), //	종가	Double
+    timestamp: parseInt(candle[0]), //	해당 캔들에서 마지막 틱이 저장된 시각	Long
+    candle_acc_trade_price: parseFloat(candle[5]) * parseFloat(candle[4]), //	누적 거래 금액	Double
+    candle_acc_trade_volume: parseFloat(candle[5]), //	누적 거래량	Double
     unit: minute_length, //	분 단위(유닛)	Integer
   };
   return coinAccountData;

@@ -1,6 +1,6 @@
 interface OkxResponseData {
   msg: string;
-  code: number;
+  code: string;
   data: Array<object>;
 }
 
