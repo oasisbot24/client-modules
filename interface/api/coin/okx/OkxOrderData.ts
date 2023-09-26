@@ -122,7 +122,7 @@ interface OkxOrderData {
   cTime: string; //	Creation time, Unix timestamp format in milliseconds, e.g. 1597026383085
 }
 
-function convertToOrderData(data: OkxOrderData): OrderData {
+function convertToOrderData(data: OkxOrderData, ratio: number): OrderData {
   let state;
   if (data.state === "canceled") state = "cancel";
   else if (data.state === "live") state = "wait";
@@ -138,8 +138,8 @@ function convertToOrderData(data: OkxOrderData): OrderData {
     ord_type: data.ordType,
     state: state,
     price: parseFloat(data.avgPx),
-    volume: parseFloat(data.accFillSz),
-    funds: parseFloat(data.accFillSz) * parseFloat(data.avgPx),
+    volume: parseFloat(data.accFillSz) * ratio,
+    funds: parseFloat(data.accFillSz) * ratio * parseFloat(data.avgPx),
   };
 }
 
