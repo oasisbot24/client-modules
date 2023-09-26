@@ -14,6 +14,7 @@ const getCoinIcon = () => {
     doge_usdt: 'coin/doge.png',
     'KRW-DOT': 'coin/dot.png',
     dot_usdt: 'coin/dot.png',
+    'BTC-USDT-SWAP': 'coin/btc.png',
   };
 };
 export default getCoinIcon;
