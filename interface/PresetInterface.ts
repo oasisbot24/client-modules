@@ -1,4 +1,4 @@
-import IndicatorInterface from "@interface/IndicatorInterface";
+import IndicatorInterface from '@interface/IndicatorInterface';
 
 interface PresetInterface {
   name: string;
@@ -9,4 +9,15 @@ interface PresetInterface {
   isError: boolean;
 }
 
+const InitialPresetInterface: PresetInterface = {
+  name: '',
+  coin_type: '',
+  indicators: [],
+  profitCutRate: 0,
+  lossCutRate: 0,
+  isError: false,
+};
+
 export default PresetInterface;
+
+export {InitialPresetInterface};
