@@ -1,7 +1,8 @@
 interface TradeInputInterface {
   tradeCoin: string;
   preset: string;
-  startBalance: number;
+  longStartBalance: number;
+  shortStartBalance: number;
 }
 
 export default TradeInputInterface;

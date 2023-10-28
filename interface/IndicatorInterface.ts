@@ -14,7 +14,13 @@ interface IndicatorInterface {
       value: any;
     };
   };
-  weight: {
+  long_weight: {
+    [key: string]: {
+      name: string;
+      value: number;
+    };
+  };
+  short_weight: {
     [key: string]: {
       name: string;
       value: number;
@@ -24,7 +30,8 @@ interface IndicatorInterface {
 
 const InitialIndicatorInterface: IndicatorInterface = {
   title: '',
-  weight: {},
+  long_weight: {},
+  short_weight: {},
   setting: {
     coin_type: {
       name: '',

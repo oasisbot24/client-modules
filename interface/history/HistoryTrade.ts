@@ -3,6 +3,7 @@ interface HistoryTrade {
   type: string;
   position: string;
   price: number;
+  posSide: string;
   volume: number;
   totalprice: number;
   profitlossrate: number | null;
