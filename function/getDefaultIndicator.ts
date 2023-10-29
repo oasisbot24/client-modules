@@ -13,7 +13,8 @@ const getDefaultIndicator = () => {
         value: 1,
       },
     },
-    weight: {},
+    long_weight: {},
+    short_weight: {},
   };
   return ret;
 };
