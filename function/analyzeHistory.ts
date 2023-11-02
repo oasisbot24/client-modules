@@ -1,10 +1,10 @@
-import AnalyzeHistory from "@interface/history/HistoryAnalyze";
-import BacktestInputInterface from "@interface/input/BacktestInputInterface";
-import HistoryTrade from "@interface/history/HistoryTrade";
+import AnalyzeHistory from '@interface/history/HistoryAnalyze';
+import BacktestInputInterface from '@interface/input/BacktestInputInterface';
+import HistoryTrade from '@interface/history/HistoryTrade';
 
 function analyzeHistory(
   history: HistoryTrade[],
-  input?: BacktestInputInterface
+  input?: BacktestInputInterface,
 ) {
   let ret: AnalyzeHistory = {
     winrate: {
@@ -67,8 +67,8 @@ function analyzeHistory(
   let short_closeDate: Date | null = null;
   let short_duration: number | null = null;
   for (let i = 0; i < history.length; i++) {
-    if (history[i].posSide === "long") {
-      if (history[i].position === "buy") {
+    if (history[i].posSide === 'long') {
+      if (history[i].position === 'buy') {
         if (long_openDate !== null) {
           long_openDate = new Date(history[i].date);
           if (long_closeDate !== null) {
@@ -83,7 +83,7 @@ function analyzeHistory(
           }
         }
       }
-      if (history[i].position === "sell") {
+      if (history[i].position === 'sell') {
         long_closeDate = new Date(history[i].date);
         if (long_openDate !== null)
           long_duration =
@@ -97,14 +97,13 @@ function analyzeHistory(
 
         // caculating pl
         countTotalPL++;
-        if (history[i].profitloss ? history[i].profitloss : 0 > 0)
-          countProfit++;
+        if (history[i].profitloss > 0) countProfit++;
         if (history[i].type in ret.tradecoin)
           ret.tradecoin[history[i].type] += 1;
         else ret.tradecoin[history[i].type] = 1;
       }
     } else {
-      if (history[i].position === "buy") {
+      if (history[i].position === 'buy') {
         if (short_openDate !== null) {
           short_openDate = new Date(history[i].date);
           if (short_closeDate !== null) {
@@ -119,7 +118,7 @@ function analyzeHistory(
           }
         }
       }
-      if (history[i].position === "sell") {
+      if (history[i].position === 'sell') {
         short_closeDate = new Date(history[i].date);
         if (short_openDate !== null)
           short_duration =
@@ -133,8 +132,7 @@ function analyzeHistory(
 
         // caculating pl
         countTotalPL++;
-        if (history[i].profitloss ? history[i].profitloss : 0 > 0)
-          countProfit++;
+        if (history[i].profitloss > 0) countProfit++;
         if (history[i].type in ret.tradecoin)
           ret.tradecoin[history[i].type] += 1;
         else ret.tradecoin[history[i].type] = 1;
@@ -163,8 +161,8 @@ function analyzeHistory(
   if (countWaiting > 0) ret.mean_waiting = durationWaiting / countWaiting;
   if (countHolding > 0) ret.mean_holding = durationHolding / countHolding;
   if (countTotalPL > 0) {
-    ret.winrate["수익"] = countProfit / countTotalPL;
-    ret.winrate["손해"] = 1 - countProfit / countTotalPL;
+    ret.winrate['수익'] = countProfit / countTotalPL;
+    ret.winrate['손해'] = 1 - countProfit / countTotalPL;
   }
   Object.keys(ret.tradecoin).map((key, index) => {
     return (ret.tradecoin[key] /= history.length);
@@ -174,7 +172,7 @@ function analyzeHistory(
   // calculating volatility
   const mean_profitlossrate = ret.profitlossrate / duration;
   for (let i = history.length - 1; i >= 0; i--) {
-    if (history[i].position === "sell") {
+    if (history[i].position === 'sell') {
       const diff = (history[i].profitlossrate ?? 0) - mean_profitlossrate;
       ret.volatility += diff * diff;
     }
@@ -189,10 +187,10 @@ function analyzeHistory(
   ret.mean_trading_in_month = parseFloat(ret.mean_trading_in_month.toFixed(1));
   ret.volatility = parseFloat((ret.volatility * 100).toFixed(2));
   ret.max_profitlossrate = parseFloat(
-    (ret.max_profitlossrate * 100).toFixed(2)
+    (ret.max_profitlossrate * 100).toFixed(2),
   );
   ret.min_profitlossrate = parseFloat(
-    (ret.min_profitlossrate * 100).toFixed(2)
+    (ret.min_profitlossrate * 100).toFixed(2),
   );
   return ret;
 }
